@@ -15,7 +15,7 @@ export default function RootLayout({
 }): JSX.Element {
     return (
         <html lang="fa" suppressHydrationWarning>
-        <body className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">{children}</body>
+            <body className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">{children}</body>
         </html>
     );
 }
