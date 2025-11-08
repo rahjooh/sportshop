@@ -1,0 +1,121 @@
+{
+  "locale": "en",
+  "navigation": {
+    "collections": "Collections",
+    "gear": "Equipment",
+    "apparel": "Apparel",
+    "nutrition": "Sports Nutrition",
+    "about": "About"
+  },
+  "hero": {
+    "title": "Everything for Iranian Champions",
+    "subtitle": "From football pitches to weight rooms, SportShop powers the ambitions of Iranian athletes with trusted global brands.",
+    "ctaPrimary": "Browse Products",
+    "ctaSecondary": "Partner with Coaches"
+  },
+  "statistics": [
+    { "label": "Active Clubs", "value": "+1,200" },
+    { "label": "Trusted Brands", "value": "+80" },
+    { "label": "Customer Happiness", "value": "98%" }
+  ],
+  "categories": {
+    "title": "Featured Collections",
+    "subtitle": "Hand-picked gear for professionals with authenticity guarantees and localized payment methods.",
+    "items": [
+      {
+        "title": "Football & Futsal",
+        "description": "Breathable team kits, cleats, and pro-grade balls.",
+        "imageAlt": "Football gear",
+        "badge": "League Ready"
+      },
+      {
+        "title": "Mountaineering & Outdoors",
+        "description": "Four-season apparel, technical backpacks, and safety essentials.",
+        "imageAlt": "Outdoor hike",
+        "badge": "Weatherproof"
+      },
+      {
+        "title": "Indoor Training",
+        "description": "From yoga to CrossFit with rapid fulfillment across Iran.",
+        "imageAlt": "Indoor training studio",
+        "badge": "Express"
+      }
+    ]
+  },
+  "highlights": {
+    "title": "Top Picks This Week",
+    "subtitle": "Discover curated recommendations tailored to your discipline and training goals.",
+    "items": [
+      {
+        "title": "Breathable Training Set",
+        "description": "Designed for Iran's climate with anti-odor fabrics.",
+        "price": "IRR 3,950,000"
+      },
+      {
+        "title": "Elite Running Shoes",
+        "description": "Carbon midsole to reduce joint stress with authenticity guarantee.",
+        "price": "IRR 7,450,000"
+      },
+      {
+        "title": "Complete Supplement Stack",
+        "description": "Nutritionist-approved formulas trusted by elite clubs.",
+        "price": "IRR 4,200,000"
+      }
+    ]
+  },
+  "features": {
+    "title": "Built for the Iranian Market",
+    "items": [
+      {
+        "title": "Flexible Payments",
+        "description": "Shaparak gateways, installment plans, and local wallets supported.",
+        "icon": "CreditCardIcon"
+      },
+      {
+        "title": "Authenticity Protection",
+        "description": "Serial tracking backed by direct relationships with global brands.",
+        "icon": "ShieldCheckIcon"
+      },
+      {
+        "title": "24-72 Hour Delivery",
+        "description": "Nationwide distribution with live tracking in the customer dashboard.",
+        "icon": "TruckIcon"
+      }
+    ]
+  },
+  "testimonials": {
+    "title": "Voices of Champions",
+    "subtitle": "Leading clubs and coaches share their SportShop experience.",
+    "items": [
+      {
+        "name": "Persepolis FC",
+        "role": "Procurement Lead",
+        "quote": "SportShop delivers the consistency and quality we require for domestic and continental competitions."
+      },
+      {
+        "name": "Mitra Karimi",
+        "role": "National Gymnastics Coach",
+        "quote": "Professional support and a complete product mix make online sourcing effortless for our staff."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "SportShop, your strategic sports partner",
+    "description": "A holistic marketplace for gear, apparel, and expert support connecting directly with Iranian federations and clubs.",
+    "links": {
+      "support": "24/7 Support",
+      "partnerships": "Partnerships",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    }
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "fa": "فارسی",
+    "en": "English"
+  },
+  "api": {
+    "status": "Service Status",
+    "connected": "Stable connection to Go Gin API"
+  }
+}

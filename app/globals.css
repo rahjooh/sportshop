@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --color-bg: #f5f7fa;
+    --color-text: #111827;
+    --color-muted: #6b7280;
+    --color-border: #e5e7eb;
+}
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Yekan Bakh', 'Inter', sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+body.ltr,
+.ltr {
+    direction: ltr;
+    font-family: 'Inter', 'Yekan Bakh', sans-serif;
+}
+
+body.rtl,
+.rtl {
+    direction: rtl;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(10, 104, 71, 0.6);
+    border-radius: 999px;
+}
+
+.section-title {
+    @apply text-3xl font-bold text-primary-dark sm:text-4xl;
+}
+
+.section-subtitle {
+    @apply mt-2 max-w-2xl text-base text-slate-600 sm:text-lg;
+}
+
+.card {
+    @apply rounded-3xl bg-white shadow-lg transition-transform hover:-translate-y-1 hover:shadow-xl;
+}
+
+.badge {
+    @apply inline-flex items-center gap-2 rounded-full px-4 py-1 text-xs font-semibold uppercase tracking-wider;
+}
