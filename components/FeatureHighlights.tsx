@@ -1,6 +1,5 @@
 import { CreditCardIcon, ShieldCheckIcon, TruckIcon } from '@heroicons/react/24/outline';
-
-type Dictionary = typeof import('../content/fa/home.json');
+import type { Dictionary } from '../lib/dictionaries';
 
 interface FeatureHighlightsProps {
     dictionary: Dictionary;

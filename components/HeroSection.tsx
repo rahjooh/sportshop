@@ -1,8 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Locale } from '../lib/i18n-config';
-
-type Dictionary = typeof import('../content/fa/home.json');
+import type { Dictionary } from '../lib/dictionaries';
 
 interface HeroSectionProps {
     dictionary: Dictionary;
@@ -48,7 +47,7 @@ export default function HeroSection({ dictionary, locale }: HeroSectionProps): J
                 <div className="absolute -inset-4 rounded-[3rem] bg-gradient-to-br from-primary/20 via-white to-primary/5 blur-3xl" />
                 <div className="relative rounded-[3rem] border border-white/60 bg-white/70 p-3 shadow-2xl backdrop-blur">
                     <Image
-                        src="https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&w=1200&q=80"
+                        src="/images/content/iran.jpg"
                         alt={hero.title}
                         width={900}
                         height={600}

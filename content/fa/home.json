@@ -25,18 +25,21 @@
       {
         "title": "فوتبال و فوتسال",
         "description": "کفش، توپ و لباس تیمی با آخرین تکنولوژی‌های تنفسی.",
+        "image": "/images/content/football.jpg",
         "imageAlt": "تجهیزات فوتبال",
         "badge": "ویژه لیگ"
       },
       {
         "title": "کوهنوردی و طبیعت‌گردی",
         "description": "پوشاک چهارفصل، کوله‌های فنی و تجهیزات ایمنی حرفه‌ای.",
+        "image": "/images/content/kooh.jpg",
         "imageAlt": "کوهنوردی در طبیعت",
         "badge": "ضدآب"
       },
       {
         "title": "ورزش‌های داخل سالن",
         "description": "از یوگا تا کراس‌فیت؛ لوازم تخصصی با ارسال سریع.",
+        "image": "/images/content/saloon.jpg",
         "imageAlt": "سالن ورزش",
         "badge": "ارسال سریع"
       }

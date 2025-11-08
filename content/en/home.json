@@ -10,6 +10,7 @@
   "hero": {
     "title": "Everything for Iranian Champions",
     "subtitle": "From football pitches to weight rooms, SportShop powers the ambitions of Iranian athletes with trusted global brands.",
+    "image": "/images/content/iran.jpg",
     "ctaPrimary": "Browse Products",
     "ctaSecondary": "Partner with Coaches"
   },
@@ -25,18 +26,21 @@
       {
         "title": "Football & Futsal",
         "description": "Breathable team kits, cleats, and pro-grade balls.",
+        "image": "/images/content/football.jpg",
         "imageAlt": "Football gear",
         "badge": "League Ready"
       },
       {
         "title": "Mountaineering & Outdoors",
         "description": "Four-season apparel, technical backpacks, and safety essentials.",
+        "image": "/images/content/kooh.jpg",
         "imageAlt": "Outdoor hike",
         "badge": "Weatherproof"
       },
       {
         "title": "Indoor Training",
         "description": "From yoga to CrossFit with rapid fulfillment across Iran.",
+        "image": "/images/content/saloon.jpg",
         "imageAlt": "Indoor training studio",
         "badge": "Express"
       }

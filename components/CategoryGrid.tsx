@@ -1,13 +1,12 @@
 import Image from 'next/image';
 import clsx from 'clsx';
-
-type Dictionary = typeof import('../content/fa/home.json');
+import type { Dictionary } from '../lib/dictionaries';
 
 interface CategoryGridProps {
     dictionary: Dictionary;
 }
 
-const imageSources = [
+const fallbackImageSources = [
     'https://images.unsplash.com/photo-1517927033932-b3d18e61fb3a?auto=format&fit=crop&w=900&q=80',
     'https://images.unsplash.com/photo-1504439904031-93ded9f93e46?auto=format&fit=crop&w=900&q=80',
     'https://images.unsplash.com/photo-1526404428533-89bb6848f585?auto=format&fit=crop&w=900&q=80'
@@ -27,7 +26,7 @@ export default function CategoryGrid({ dictionary }: CategoryGridProps): JSX.Ele
                     <article key={item.title} className="card overflow-hidden">
                         <div className="relative h-64">
                             <Image
-                                src={imageSources[index]}
+                                src={item.image ?? fallbackImageSources[index]}
                                 alt={item.imageAlt}
                                 fill
                                 sizes="(min-width: 768px) 33vw, 100vw"

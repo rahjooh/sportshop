@@ -1,18 +1,15 @@
 import type { Locale } from './i18n-config';
+import fa from '../content/fa/home.json';
+import en from '../content/en/home.json';
 
-type Dictionary = typeof import('../content/fa/home.json').default;
+const dictionaries = {
+    fa,
+    en
+} as const satisfies Record<Locale, typeof fa>;
 
-const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
-    fa: () => import('../content/fa/home.json').then((module) => module.default),
-    en: () => import('../content/en/home.json').then((module) => module.default)
-};
+export type Dictionary = (typeof dictionaries)[Locale];
 
 export async function getDictionary(locale: Locale): Promise<Dictionary> {
-    const dictionaryLoader = dictionaries[locale] ?? dictionaries.fa;
-    try {
-        return await dictionaryLoader();
-    } catch (error) {
-        console.error('Failed to load dictionary', { locale, error });
-        return dictionaries.fa();
-    }
+    const dictionary = dictionaries[locale] ?? dictionaries.fa;
+    return dictionary;
 }

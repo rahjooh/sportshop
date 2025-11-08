@@ -1,4 +1,4 @@
-type Dictionary = typeof import('../content/fa/home.json');
+import type { Dictionary } from '../lib/dictionaries';
 
 interface TestimonialsProps {
     dictionary: Dictionary;

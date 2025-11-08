@@ -1,6 +1,6 @@
-const highlightGradient = 'bg-gradient-to-br from-white via-primary/5 to-white';
+import type { Dictionary } from '../lib/dictionaries';
 
-type Dictionary = typeof import('../content/fa/home.json');
+const highlightGradient = 'bg-gradient-to-br from-white via-primary/5 to-white';
 
 interface ProductHighlightsProps {
     dictionary: Dictionary;

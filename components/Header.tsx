@@ -6,8 +6,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, LanguageIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import type { Locale } from '../lib/i18n-config';
-
-type Dictionary = typeof import('../content/fa/home.json');
+import type { Dictionary } from '../lib/dictionaries';
 
 interface HeaderProps {
     locale: Locale;
@@ -27,19 +26,21 @@ export default function Header({ locale, dictionary }: HeaderProps): JSX.Element
             <div className="flex items-center gap-1 rounded-full bg-slate-100 p-1">
                 <Link
                     href="/fa"
+                    aria-label={languageLabels.fa}
                     className={clsx('rounded-full px-3 py-1 transition-colors', {
                         'bg-white text-primary-dark shadow': locale === 'fa'
                     })}
                 >
-                    {languageLabels.fa}
+                    <span aria-hidden="true" className="text-lg">🇮🇷</span>
                 </Link>
                 <Link
                     href="/en"
+                    aria-label={languageLabels.en}
                     className={clsx('rounded-full px-3 py-1 transition-colors', {
                         'bg-white text-primary-dark shadow': locale === 'en'
                     })}
                 >
-                    {languageLabels.en}
+                    <span aria-hidden="true" className="text-lg">🇺🇸</span>
                 </Link>
             </div>
         </div>

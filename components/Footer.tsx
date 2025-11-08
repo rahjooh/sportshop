@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import type { Locale } from '../lib/i18n-config';
-
-type Dictionary = typeof import('../content/fa/home.json');
+import type { Dictionary } from '../lib/dictionaries';
 
 interface FooterProps {
     locale: Locale;
