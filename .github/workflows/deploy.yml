@@ -81,15 +81,18 @@ jobs:
             EOF
 
             $SUDO ln -sf "$SITE_CONF" "$SITE_LINK"
+            if [ -e /etc/nginx/sites-enabled/default ]; then
+              $SUDO rm -f /etc/nginx/sites-enabled/default
+            fi
             $SUDO nginx -t && $SUDO systemctl restart nginx
 
-            # Auto SSL with certbot
-            if [ -n "${CERTBOT_EMAIL}" ]; then
-              if ! [ -d "/etc/letsencrypt/live/${DOMAIN}" ]; then
-                $SUDO apt-get install -y certbot python3-certbot-nginx
-                $SUDO certbot --nginx -d "${DOMAIN}" --non-interactive --agree-tos -m "${CERTBOT_EMAIL}" || true
-              fi
-            fi
+#            # Auto SSL with certbot
+#            if [ -n "${CERTBOT_EMAIL}" ]; then
+#              if ! [ -d "/etc/letsencrypt/live/${DOMAIN}" ]; then
+#                $SUDO apt-get install -y certbot python3-certbot-nginx
+#                $SUDO certbot --nginx -d "${DOMAIN}" --non-interactive --agree-tos -m "${CERTBOT_EMAIL}" || true
+#              fi
+#            fi
 
   deploy:
     name: Deploy Sport App
