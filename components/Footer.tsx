@@ -14,7 +14,7 @@ export default function Footer({ locale, dictionary }: FooterProps): JSX.Element
         <footer className="border-t border-[var(--color-border)] bg-white py-12">
             <div className="mx-auto grid max-w-7xl gap-10 px-6 sm:grid-cols-3 sm:px-8 lg:px-12">
                 <div className="space-y-4">
-                    <div className="text-xl font-bold text-primary-dark">SportShop</div>
+                    <div className="text-xl font-bold text-primary-dark">پیتوک</div>
                     <p className="text-sm leading-relaxed text-slate-600">{footer.description}</p>
                     <p className="text-sm font-semibold text-primary">{footer.tagline}</p>
                 </div>
@@ -41,7 +41,7 @@ export default function Footer({ locale, dictionary }: FooterProps): JSX.Element
                         <div className="mt-2 text-sm text-primary-dark">{dictionary.api.connected}</div>
                     </div>
                     <p className="text-xs text-slate-400">
-                        © {new Date().getFullYear()} SportShop. Crafted with Go Gin & Next.js.
+                        © {new Date().getFullYear()} پیتوک. Crafted with Go Gin & Next.js.
                     </p>
                 </div>
             </div>

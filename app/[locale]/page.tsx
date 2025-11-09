@@ -14,7 +14,7 @@ export async function generateStaticParams(): Promise<{ locale: Locale }[]> {
 export async function generateMetadata({ params }: { params: { locale: Locale } }): Promise<Metadata> {
     const dictionary = await getDictionary(params.locale);
     return {
-        title: params.locale === 'fa' ? 'SportShop | فروشگاه تخصصی ورزش' : 'SportShop | Iranian Sports Marketplace',
+        title: params.locale === 'fa' ? 'پیتوک | فروشگاه تخصصی ورزش' : 'Pitok | Iranian Sports Marketplace',
         description: dictionary.hero.subtitle
     };
 }

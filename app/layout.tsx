@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-    title: 'SportShop | فروشگاه ورزشی آنلاین',
+    title: 'پیتوک | فروشگاه ورزشی آنلاین',
     description:
-        'SportShop is a bilingual sports marketplace tailored for Iranian athletes. Discover premium gear, apparel, and accessories backed by a Go Gin API.',
+        'پیتوک is a bilingual sports marketplace tailored for Iranian athletes. Discover premium gear, apparel, and accessories backed by a Go Gin API.',
     metadataBase: new URL('https://example.com')
 };
 

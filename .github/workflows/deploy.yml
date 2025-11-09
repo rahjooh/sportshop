@@ -1,0 +1,169 @@
+name: Deploy Sport App to Subdomain
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  DEPLOY_ENVIRONMENT_NAME: ${{ vars.DEPLOY_ENVIRONMENT_NAME || vars.DEPLOY_ENV || 'host' }}
+  SPORT_DOMAIN: ${{ vars.SPORT_DOMAIN || 'sport.boofshop.com' }}
+  SPORT_APP_NAME: ${{ vars.SPORT_APP_NAME || 'sport-app' }}
+  SPORT_APP_PORT: ${{ vars.SPORT_APP_PORT || '3003' }}
+
+jobs:
+  ssh-test:
+    name: Verify SSH and Nginx for sport.boofshop.com
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ env.DEPLOY_ENVIRONMENT_NAME }}
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST || vars.SSH_HOST }}
+      SSH_USER: ${{ secrets.SSH_USER || vars.SSH_USER }}
+      SSH_PASSWORD: ${{ secrets.SSH_PASSWORD || vars.SSH_PASSWORD }}
+      CERTBOT_EMAIL: ${{ secrets.CERTBOT_EMAIL || vars.CERTBOT_EMAIL || '' }}
+
+    steps:
+      - name: Validate connection settings
+        run: |
+          for v in SSH_HOST SSH_USER SSH_PASSWORD SPORT_DOMAIN SPORT_APP_PORT SPORT_APP_NAME; do
+            if [ -z "${!v}" ]; then
+              echo "::error::Missing required env: $v" >&2
+              exit 1
+            fi
+          done
+
+      - name: Test SSH connection
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ env.SSH_HOST }}
+          username: ${{ env.SSH_USER }}
+          password: ${{ env.SSH_PASSWORD }}
+          port: 22
+          script: echo "✅ SSH connection successful for sport.boofshop.com"
+
+      - name: Ensure Nginx is installed and configure subdomain
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ env.SSH_HOST }}
+          username: ${{ env.SSH_USER }}
+          password: ${{ env.SSH_PASSWORD }}
+          port: 22
+          script: |
+            set -euo pipefail
+            DOMAIN="${SPORT_DOMAIN}"
+            PORT="${SPORT_APP_PORT}"
+            SITE_CONF="/etc/nginx/sites-available/${DOMAIN}"
+            SITE_LINK="/etc/nginx/sites-enabled/${DOMAIN}"
+
+            if command -v sudo >/dev/null 2>&1; then SUDO="sudo"; else SUDO=""; fi
+            if ! command -v nginx >/dev/null 2>&1; then
+              $SUDO apt-get update && $SUDO apt-get install -y nginx
+            fi
+
+            # Basic HTTP config
+            $SUDO tee "$SITE_CONF" >/dev/null <<EOF
+            server {
+              listen 80;
+              listen [::]:80;
+              server_name ${DOMAIN};
+              location / {
+                proxy_pass http://127.0.0.1:${PORT};
+                proxy_http_version 1.1;
+                proxy_set_header Upgrade \$http_upgrade;
+                proxy_set_header Connection "upgrade";
+                proxy_set_header Host \$host;
+                proxy_set_header X-Real-IP \$remote_addr;
+                proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+                proxy_set_header X-Forwarded-Proto \$scheme;
+              }
+            }
+            EOF
+
+            $SUDO ln -sf "$SITE_CONF" "$SITE_LINK"
+            $SUDO nginx -t && $SUDO systemctl restart nginx
+
+            # Auto SSL with certbot
+            if [ -n "${CERTBOT_EMAIL}" ]; then
+              if ! [ -d "/etc/letsencrypt/live/${DOMAIN}" ]; then
+                $SUDO apt-get install -y certbot python3-certbot-nginx
+                $SUDO certbot --nginx -d "${DOMAIN}" --non-interactive --agree-tos -m "${CERTBOT_EMAIL}" || true
+              fi
+            fi
+
+  deploy:
+    name: Deploy Sport App
+    runs-on: ubuntu-latest
+    needs: ssh-test
+    environment:
+      name: ${{ env.DEPLOY_ENVIRONMENT_NAME }}
+    env:
+      SSH_HOST: ${{ secrets.SSH_HOST || vars.SSH_HOST }}
+      SSH_USER: ${{ secrets.SSH_USER || vars.SSH_USER }}
+      SSH_PASSWORD: ${{ secrets.SSH_PASSWORD || vars.SSH_PASSWORD }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Prepare deployment archive
+        run: |
+          set -e
+          tar czf deploy.tar.gz --exclude='.git' --exclude='node_modules' .
+
+      - name: Upload to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ env.SSH_HOST }}
+          username: ${{ env.SSH_USER }}
+          password: ${{ env.SSH_PASSWORD }}
+          port: 22
+          source: "deploy.tar.gz"
+          target: "~/deployments"
+
+      - name: Deploy on remote host
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ env.SSH_HOST }}
+          username: ${{ env.SSH_USER }}
+          password: ${{ env.SSH_PASSWORD }}
+          port: 22
+          script: |
+            set -euo pipefail
+            DOMAIN="${SPORT_DOMAIN}"
+            APP_DIR="$HOME/apps/${DOMAIN}"
+            APP_NAME="${SPORT_APP_NAME}"
+            APP_PORT="${SPORT_APP_PORT}"
+            ARCHIVE_PATH="$HOME/deployments/deploy.tar.gz"
+
+            if command -v sudo >/dev/null 2>&1; then SUDO="sudo"; else SUDO=""; fi
+
+            # Ensure Node + PM2
+            if ! command -v node >/dev/null 2>&1; then
+              $SUDO apt-get update
+              curl -fsSL https://deb.nodesource.com/setup_20.x | $SUDO bash -
+              $SUDO apt-get install -y nodejs
+            fi
+            if ! command -v pm2 >/dev/null 2>&1; then
+              $SUDO npm install -g pm2
+            fi
+
+            # Stop old app if exists
+            if pm2 describe "$APP_NAME" >/dev/null 2>&1; then
+              pm2 stop "$APP_NAME" && pm2 delete "$APP_NAME"
+            fi
+
+            # Unpack & build
+            rm -rf "$APP_DIR"
+            mkdir -p "$APP_DIR"
+            tar -xzf "$ARCHIVE_PATH" -C "$APP_DIR" --strip-components=1
+            rm -f "$ARCHIVE_PATH"
+
+            cd "$APP_DIR"
+            npm install
+            npm run build
+
+            # Start with PM2
+            pm2 start npm --name "$APP_NAME" -- run start -- --hostname 0.0.0.0 --port "$APP_PORT"
+            pm2 save
+            $SUDO systemctl reload nginx || $SUDO systemctl restart nginx || true

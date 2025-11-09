@@ -5,18 +5,28 @@
     "gear": "تجهیزات",
     "apparel": "پوشاک",
     "nutrition": "تغذیه ورزشی",
-    "about": "درباره ما"
+    "about": "درباره ما",
+    "catalog": "تمام محصولات"
   },
   "hero": {
     "title": "همه چیز برای قهرمانی ایرانی",
-    "subtitle": "از زمین چمن تا سالن بدنسازی؛ SportShop انتخاب اول ورزشکاران حرفه‌ای و علاقمندان ورزش در ایران است.",
+    "subtitle": "از زمین چمن تا سالن بدنسازی؛ پیتوک انتخاب اول ورزشکاران حرفه‌ای و علاقمندان ورزش در ایران است.",
     "ctaPrimary": "مشاهده محصولات",
     "ctaSecondary": "همکاری با مربیان"
   },
   "statistics": [
-    { "label": "باشگاه‌های فعال", "value": "+۱۲۰۰" },
-    { "label": "برندهای معتبر", "value": "+۸۰" },
-    { "label": "مشتریان راضی", "value": "۹۸٪" }
+    {
+      "label": "باشگاه‌های فعال",
+      "value": "+۱۲۰۰"
+    },
+    {
+      "label": "برندهای معتبر",
+      "value": "+۸۰"
+    },
+    {
+      "label": "مشتریان راضی",
+      "value": "۹۸٪"
+    }
   ],
   "categories": {
     "title": "کالکشن‌های ویژه",
@@ -88,12 +98,12 @@
   },
   "testimonials": {
     "title": "صدای قهرمانان",
-    "subtitle": "باشگاه‌ها و مربیان مطرح از تجربه همکاری با SportShop می‌گویند.",
+    "subtitle": "باشگاه‌ها و مربیان مطرح از تجربه همکاری با پیتوک می‌گویند.",
     "items": [
       {
         "name": "باشگاه پرسپولیس",
         "role": "مدیر خرید",
-        "quote": "SportShop توانسته است تأمین تجهیزات ما را با کیفیت بالا و زمان‌بندی دقیق تضمین کند."
+        "quote": "پیتوک توانسته است تأمین تجهیزات ما را با کیفیت بالا و زمان‌بندی دقیق تضمین کند."
       },
       {
         "name": "میترا کریمی",
@@ -103,7 +113,7 @@
     ]
   },
   "footer": {
-    "tagline": "SportShop؛ شریک استراتژیک ورزش ایران",
+    "tagline": "پیتوک؛ شریک استراتژیک ورزش ایران",
     "description": "فروشگاه جامع تجهیزات و پوشاک ورزشی با پشتیبانی تخصصی و اتصال مستقیم به باشگاه‌ها و فدراسیون‌ها.",
     "links": {
       "support": "پشتیبانی ۲۴/۷",
@@ -112,13 +122,674 @@
       "terms": "شرایط استفاده"
     }
   },
+  "auth": {
+    "links": {
+      "login": "ورود",
+      "register": "ثبت‌نام"
+    },
+    "shared": {
+      "mobileLabel": "شماره موبایل",
+      "mobilePlaceholder": "مثلاً ۰۹۱۲۱۲۳۴۵۶۷",
+      "otpLabel": "کد یک‌بارمصرف",
+      "otpPlaceholder": "کد ۶ رقمی",
+      "passwordLabel": "رمز عبور حساب",
+      "passwordPlaceholder": "رمزی که هنگام ثبت‌نام تعیین کردید",
+      "nameLabel": "نام و نام خانوادگی",
+      "emailLabel": "ایمیل کاری",
+      "success": "انجام شد!",
+      "error": "خطایی رخ داد، دوباره تلاش کنید.",
+      "activationHint": "کد فعال‌سازی در لاگ boofback چاپ می‌شود؛ پس از کپی، حساب خود را فعال کنید."
+    },
+    "login": {
+      "title": "ورود با شماره موبایل",
+      "subtitle": "شماره موبایل نام کاربری شماست و برای هر ورود یک کد یک‌بارمصرف دریافت می‌کنید.",
+      "requestOtp": "ارسال کد",
+      "verifyOtp": "تأیید و ورود",
+      "otpHelper": "کد OTP تازه در لاگ بک‌اند ایجاد شد؛ این کد در این ورود نقش رمز عبور را دارد.",
+      "passwordHelper": "گام اول، رمز عبور ذخیره‌شده را چک می‌کند تا بعد از آن کد OTP ارسال شود.",
+      "otpStepTitle": "کد تأیید را وارد کنید",
+      "successMessage": "ورود با موفقیت انجام شد و کوکی جلسه boofback در مرورگر ذخیره شد.",
+      "switchToRegister": "حسابی ندارید؟"
+    },
+    "register": {
+      "title": "ساخت حساب پیتوک",
+      "subtitle": "همان شماره موبایلی را وارد کنید که می‌خواهید با OTP فعالش کنید.",
+      "submit": "ایجاد حساب",
+      "successTitle": "حساب ایجاد شد",
+      "successBody": "کد فعال‌سازی را از لاگ API بردارید، درخواست ‎/api/v1/auth/activate‎ را بفرستید و سپس وارد شوید.",
+      "switchToLogin": "قبلاً ثبت‌نام کرده‌اید؟"
+    }
+  },
+  "backend": {
+    "hero": {
+      "kicker": "boofback API",
+      "title": "همین‌جا به سرویس Go متصل شوید",
+      "subtitle": "بدون ترک رابط کاربری، سلامت سرور را بررسی کنید، محصول بسازید و کل جریان OTP را عیناً مثل Gin اجرا کنید.",
+      "metrics": [
+        {
+          "label": "تاخیر",
+          "value": "< ۶۰ms"
+        },
+        {
+          "label": "پنجره OTP",
+          "value": "۵ دقیقه"
+        },
+        {
+          "label": "عمر سشن",
+          "value": "۷ روز"
+        }
+      ]
+    },
+    "nav": {
+      "overview": "نمای کلی",
+      "status": "وضعیت",
+      "products": "محصولات",
+      "users": "کاربران",
+      "auth": "احراز هویت",
+      "addresses": "آدرس‌ها",
+      "orders": "سفارش‌ها",
+      "cta": "کنسول API"
+    },
+    "playground": {
+      "requestTitle": "بادی درخواست",
+      "responseTitle": "آخرین پاسخ",
+      "send": "ارسال درخواست",
+      "sending": "در حال ارسال…",
+      "requiresAuth": "نیازمند کوکی سشن معتبر boofback است.",
+      "invalidJson": "ساختار JSON درست نیست. لطفاً اصلاح کنید.",
+      "emptyResponse": "در انتظار ارسال درخواست."
+    },
+    "overview": {
+      "layersEyebrow": "معماری",
+      "layersTitle": "سرویس لایه‌ای Go",
+      "layersSubtitle": "هر لایه تنها یک مسئولیت دارد؛ بنابراین تعویض دیتابیس یا ترنسپورت بدون لمس منطق تجاری انجام می‌شود.",
+      "layers": [
+        {
+          "layer": "Domain",
+          "title": "مدل‌ها و اعتبارسنجی",
+          "description": "قبل از ذخیره‌سازی، موجودیت‌های Product، User، Address، OTP و Order را ایمن می‌کند.",
+          "location": "internal/domain"
+        },
+        {
+          "layer": "Repository",
+          "title": "آداپتورهای ذخیره‌سازی",
+          "description": "الان حافظه اشتراکی و فردا پایگاه‌داده؛ هر دو با یک اینترفیس پیاده‌سازی می‌شوند.",
+          "location": "internal/repository"
+        },
+        {
+          "layer": "Service",
+          "title": "موارد کاربرد",
+          "description": "ارکستراسیون بیزینسی برای آن‌بوردینگ، OTP، قوانین آدرس و رزرو موجودی.",
+          "location": "internal/service"
+        },
+        {
+          "layer": "Transport",
+          "title": "هندلرها و روتر Gin",
+          "description": "بایندینگ HTTP، میان‌افزار و پاسخ استاندارد برای /api/v1 و /health.",
+          "location": "internal/handler + internal/router"
+        }
+      ],
+      "workflowEyebrow": "سفر ویژگی",
+      "workflowTitle": "مسیر کاربر در boofback",
+      "workflowSubtitle": "هر درخواست را با سناریوی واقعی آن تطبیق دهید.",
+      "workflowSteps": [
+        {
+          "title": "ثبت‌نام",
+          "description": "POST ‎/api/v1/users‎ کاربر را می‌سازد، رمز را هش می‌کند و OTP فعال‌سازی را در لاگ چاپ می‌کند."
+        },
+        {
+          "title": "فعال‌سازی",
+          "description": "POST ‎/api/v1/auth/activate‎ با تطبیق موبایل + OTP فیلد is_active را فعال می‌کند."
+        },
+        {
+          "title": "ورود دو مرحله‌ای",
+          "description": "POST ‎/api/v1/auth/login‎ رمز را چک می‌کند و ‎/verify‎ بعد از OTP کوکی امضا شده می‌سازد."
+        },
+        {
+          "title": "تراکنش",
+          "description": "کاربران احراز شده محصولات را می‌بینند، آدرس را ضمیمه می‌کنند و سفارش می‌سازند."
+        }
+      ],
+      "apiEyebrow": "سطح دسترسی",
+      "apiTitle": "کلیدی‌ترین اندپوینت‌ها",
+      "apiSubtitle": "همه این مسیرها در پلی‌گراند آماده شده‌اند.",
+      "apiTable": {
+        "method": "متد",
+        "path": "مسیر",
+        "description": "توضیح",
+        "access": "دسترسی"
+      },
+      "apiEndpoints": [
+        {
+          "method": "GET",
+          "path": "/health",
+          "description": "چک سلامت برای لود بالانسر و توسعه‌دهنده.",
+          "scope": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/users",
+          "description": "کاربر را با وضعیت غیرفعال ذخیره می‌کند.",
+          "scope": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/activate",
+          "description": "OTP را تأیید و حساب را باز می‌کند.",
+          "scope": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "description": "مرحله اول ورود OTP.",
+          "scope": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login/verify",
+          "description": "کوکی سشن را ست می‌کند.",
+          "scope": "public"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/products",
+          "description": "فهرست محصولات و موجودی لحظه‌ای.",
+          "scope": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/orders",
+          "description": "سفارش جدید با آدرس ذخیره شده یا درجا.",
+          "scope": "authenticated"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/addresses",
+          "description": "دفترچه آدرس کاربر فعلی.",
+          "scope": "authenticated"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/products",
+          "description": "ایجاد محصول ویژه ادمین.",
+          "scope": "admin"
+        }
+      ]
+    },
+    "status": {
+      "eyebrow": "پایش",
+      "title": "سلامت زمان اجرا",
+      "subtitle": "مسیر /health بدون وابستگی خارجی است و قبل از فراخوانی اندپوینت‌های خصوصی، اتصال را بررسی می‌کند.",
+      "cards": {
+        "status": "وضعیت",
+        "uptime": "آپ‌تایم",
+        "region": "منطقه",
+        "unknown": "نامشخص",
+        "na": "ثبت نشده"
+      },
+      "unreachable": "API در دسترس نیست. مقدار NEXT_PUBLIC_API_BASE_URL، اجرای `make run` و تنظیمات CORS را بررسی کنید.",
+      "diagnosticsTitle": "عیب‌یابی دستی",
+      "diagnosticsSubtitle": "برای تست TLS یا VPN همین‌جا درخواست واقعی بفرستید.",
+      "playground": {
+        "title": "Ping ‎/health‎",
+        "description": "در صورت فعال بودن سرور Gin وضعیت ۲۰۰ برمی‌گرداند."
+      }
+    },
+    "products": {
+      "eyebrow": "موجودی",
+      "title": "محصولات فعال",
+      "subtitle": "لیست زیر مستقیماً از ‎/api/v1/products‎ خوانده می‌شود.",
+      "columns": {
+        "name": "نام",
+        "description": "توضیح",
+        "price": "قیمت",
+        "stock": "موجودی"
+      },
+      "empty": "هنوز محصولی ثبت نشده است. از پلی‌گراند برای افزودن محصول استفاده کنید.",
+      "playgroundTitle": "اندپوینت‌های محصول",
+      "playgroundSubtitle": "مدیریت موجودی ویژه ادمین‌هاست.",
+      "createTitle": "ایجاد محصول",
+      "createDescription": "نیازمند کوکی ادمین است و بلافاصله در سفارش‌ها قابل استفاده می‌شود.",
+      "detailTitle": "دریافت بر اساس شناسه",
+      "detailDescription": "به جای :id شناسه برگردانده شده را قرار دهید.",
+      "samples": {
+        "create": {
+          "name": "پیراهن تیم ملی",
+          "description": "نسخه محدود مسابقات آسیایی.",
+          "price": 199.99,
+          "stock": 25
+        }
+      }
+    },
+    "users": {
+      "eyebrow": "کاربران",
+      "title": "چرخه حیات مشتری",
+      "subtitle": "هر Form رابط کاربری به اندپوینت مربوطه متصل شده است.",
+      "steps": [
+        {
+          "title": "ثبت‌نام",
+          "description": "POST ‎/api/v1/users‎ با نام، ایمیل، موبایل و رمز."
+        },
+        {
+          "title": "فعال‌سازی",
+          "description": "OTP لاگ شده را بردارید و به ‎/api/v1/auth/activate‎ بفرستید."
+        },
+        {
+          "title": "ورود",
+          "description": "دو POST پشت سر هم (‎/login‎ و ‎/verify‎) نیاز است."
+        }
+      ],
+      "createTitle": "ساخت کاربر",
+      "createDescription": "هم‌ارز فرم ثبت‌نام در UI.",
+      "activateTitle": "فعال‌سازی حساب",
+      "activateDescription": "پس از تطبیق OTP وضعیت فعال می‌شود.",
+      "adminTitle": "اندپوینت‌های ادمین",
+      "adminDescription": "GET ‎/api/v1/users‎ و مدیریت سایر پروفایل‌ها فقط برای نقش admin فعال است.",
+      "samples": {
+        "create": {
+          "name": "آدا لاولیس",
+          "email": "ada@example.com",
+          "mobile": "+15555550123",
+          "password": "Str0ngPass!"
+        },
+        "activate": {
+          "mobile": "+15555550123",
+          "code": "123456"
+        }
+      }
+    },
+    "authFlows": {
+      "eyebrow": "احراز هویت",
+      "title": "ورود OTP محور",
+      "subtitle": "تمام تغییرات حساس پشت POST شفاف قرار دارند.",
+      "notes": [
+        "تا قبل از مرحله verify هیچ وضعیتی در سرور نگهداری نمی‌شود.",
+        "کوکی سشن شناسه کاربر و نقش را در خود دارد.",
+        "فراموشی رمز از همان مخزن OTP با purpose=reset استفاده می‌کند."
+      ],
+      "loginSection": {
+        "title": "ورود دو مرحله‌ای",
+        "subtitle": "گام اول رمز را چک می‌کند و گام دوم OTP را.",
+        "initiateTitle": "شروع ورود",
+        "initiateDescription": "OTP جدید ارسال می‌شود و پاسخ ۲۰۲ می‌گیرید.",
+        "verifyTitle": "تأیید ورود",
+        "verifyDescription": "در صورت موفقیت کوکی HTTP-only ست می‌شود."
+      },
+      "sessionSection": {
+        "meTitle": "هویت جاری",
+        "meDescription": "GET ‎/api/v1/auth/me‎ اطلاعات کاربر احراز شده را می‌دهد.",
+        "logoutTitle": "خروج",
+        "logoutDescription": "POST ‎/api/v1/auth/logout‎ کوکی را باطل می‌کند."
+      },
+      "resetSection": {
+        "title": "بازیابی رمز",
+        "subtitle": "ابتدا OTP را درخواست کنید و سپس رمز جدید بفرستید.",
+        "forgotTitle": "دریافت OTP بازیابی",
+        "forgotDescription": "ایمیل + موبایل را چک کرده و OTP را لاگ می‌کند.",
+        "resetTitle": "تنظیم رمز جدید",
+        "resetDescription": "OTP و شناسه‌های تطبیق یافته لازم است."
+      },
+      "samples": {
+        "login": {
+          "mobile": "+15555550123",
+          "password": "Str0ngPass!"
+        },
+        "verify": {
+          "mobile": "+15555550123",
+          "code": "123456"
+        },
+        "forgot": {
+          "email": "ada@example.com",
+          "mobile": "+15555550123"
+        },
+        "reset": {
+          "email": "ada@example.com",
+          "mobile": "+15555550123",
+          "code": "123456",
+          "password": "NewStr0ngPass!"
+        }
+      }
+    },
+    "addresses": {
+      "eyebrow": "دفترچه آدرس",
+      "title": "پروفایل‌های ارسال قابل تکرار",
+      "subtitle": "آدرس انتخابی در هر سفارش کپی می‌شود تا تاریخچه دست‌نخورده بماند.",
+      "highlights": [
+        "فقط با سشن معتبر قابل دسترس است و خودکار به مالک نگاشت می‌شود.",
+        "تنها یک آدرس پیش‌فرض فعال است و سرور آن را enforce می‌کند."
+      ],
+      "createTitle": "ذخیره آدرس",
+      "createDescription": "POST ‎/api/v1/addresses‎ آدرس جدید یا پیش‌فرض را ثبت می‌کند.",
+      "listTitle": "نمایش آدرس‌ها",
+      "listDescription": "تمام آدرس‌های ذخیره شده کاربر احراز شده را برمی‌گرداند.",
+      "defaultTitle": "تنظیم پیش‌فرض",
+      "defaultDescription": "POST ‎/api/v1/addresses/:id/default‎ سایر پیش‌فرض‌ها را غیرفعال می‌کند.",
+      "updateTitle": "ویرایش آدرس",
+      "updateDescription": "PUT ‎/api/v1/addresses/:id‎ همان رکورد را به‌روز می‌کند.",
+      "samples": {
+        "create": {
+          "label": "خانه",
+          "recipient_name": "آدا لاولیس",
+          "line1": "خیابان ۴۲ باینری",
+          "city": "تهران",
+          "region": "تهران",
+          "postal_code": "1234567890",
+          "country": "IR",
+          "phone": "+989120000000",
+          "is_default": true
+        },
+        "update": {
+          "label": "خانه مرکزی",
+          "recipient_name": "آدا لاولیس",
+          "line1": "خیابان ۴۲ باینری",
+          "city": "تهران",
+          "region": "تهران",
+          "postal_code": "1234567890",
+          "country": "IR",
+          "phone": "+989120000000",
+          "is_default": false
+        }
+      }
+    },
+    "orders": {
+      "eyebrow": "سفارش‌ها",
+      "title": "ارکستراسیون خرید",
+      "subtitle": "درخواست‌ها آدرس انتخاب شده را کپی و موجودی را قفل می‌کنند.",
+      "requirements": [
+        "سشن معتبر (مشتری فقط روی user_id خود سفارش می‌دهد، ادمین می‌تواند به جای دیگران).",
+        "حداقل یک product_id معتبر با quantity.",
+        "یا address_id متعلق به کاربر یا payload آدرس در جا."
+      ],
+      "createTitle": "ایجاد سفارش",
+      "createDescription": "user_id و آدرس ذخیره شده یا آدرس درجا را ارسال کنید.",
+      "listTitle": "لیست سفارش‌ها",
+      "listDescription": "ادمین همه چیز را می‌بیند و مشتری فقط سفارش‌های خودش را.",
+      "detailTitle": "جزئیات سفارش",
+      "detailDescription": "GET ‎/api/v1/orders/:id‎ اقلام، جمع و آدرس کپی شده را برمی‌گرداند.",
+      "adminTitle": "سفارش‌های یک کاربر",
+      "adminDescription": "ادمین می‌تواند سفارش‌های هر user_id را بازیابی کند.",
+      "samples": {
+        "create": {
+          "user_id": "شناسه-کاربر",
+          "address_id": "شناسه-آدرس",
+          "items": [
+            {
+              "product_id": "شناسه-محصول",
+              "quantity": 1
+            }
+          ]
+        }
+      }
+    }
+  },
   "languageSwitcher": {
-    "label": "زبان",
     "fa": "فارسی",
     "en": "English"
   },
   "api": {
     "status": "وضعیت سرویس‌ها",
     "connected": "ارتباط پایدار با API گولنگ"
+  },
+  "catalogPage": {
+    "seo": {
+      "title": "کاتالوگ محصولات پیتوک | تمرین، رقابت، ریکاوری",
+      "description": "تمام تجهیزات، پوشاک و باندل‌های آماده ارسال برای باشگاه‌ها و آکادمی‌های ایرانی را یکجا ببینید."
+    },
+    "hero": {
+      "kicker": "کاتالوگ کالا",
+      "title": "موجودی عمیق برای هر ورزشکار ایرانی",
+      "subtitle": "از آکادمی‌های پایه تا تیم‌های ملی، برنامه تأمین، شخصی‌سازی و تحویل در همان هفته را تنظیم کنید.",
+      "primaryCta": "ساخت لیست خرید",
+      "secondaryCta": "درخواست جلسه مرچندایزینگ",
+      "pill": {
+        "label": "ورود جدید",
+        "value": "لانچ بهار ۱۴۰۳"
+      },
+      "stats": [
+        {
+          "label": "SKU آماده ارسال",
+          "value": "+۱٬۸۵۰"
+        },
+        {
+          "label": "هاب‌ لجستیکی",
+          "value": "۸ شهر"
+        },
+        {
+          "label": "سفارش سفارشی",
+          "value": "میانگین ۱۴ روز"
+        }
+      ],
+      "serviceNotes": [
+        {
+          "title": "شخصی‌سازی باشگاهی",
+          "description": "شماره، اسپانسر و اتیکت فدراسیون به‌صورت داخلی تولید می‌شود."
+        },
+        {
+          "title": "تضمین الزامات",
+          "description": "تمام مکمل‌ها دارای مجوز سازمان غذا و دارو و مستندات آزمایشگاهی هستند."
+        }
+      ]
+    },
+    "categorySlider": {
+      "title": "خرید بر اساس رشته",
+      "subtitle": "بین محبوب‌ترین دپارتمان‌ها اسکرول کنید و دسترسی سریع بگیرید.",
+      "cta": "دانلود فایل تنوع کالا",
+      "items": [
+        {
+          "id": "cat-football",
+          "title": "فوتبال و فوتسال",
+          "description": "لباس مسابقه، کفش ریکاوری و ست سفر.",
+          "tag": "تجهیزات مسابقه",
+          "image": "/images/content/football.jpg"
+        },
+        {
+          "id": "cat-outdoor",
+          "title": "آوت‌دور و ترکینگ",
+          "description": "لایه‌های عایق، کرامپون، طناب و چادر تخصصی.",
+          "tag": "چهارفصل",
+          "image": "/images/content/kooh.jpg"
+        },
+        {
+          "id": "cat-club",
+          "title": "برنامه‌های باشگاهی داخل سالن",
+          "description": "ست کراس‌فیت، کمربند لیفت، مت و وزنه.",
+          "tag": "آماده استودیو",
+          "image": "/images/content/saloon.jpg"
+        },
+        {
+          "id": "cat-national",
+          "title": "ملزومات تیم ملی",
+          "description": "پوشاک سفر، لباس تشریفاتی و کیت پزشکی.",
+          "tag": "کاروان رسمی",
+          "image": "/images/content/iran.jpg"
+        }
+      ]
+    },
+    "featuredRail": {
+      "title": "ریل محصولات ویژه",
+      "subtitle": "دسترسی فوری، کد اصالت و قیمت رسمی نمایندگی‌ها.",
+      "cta": "نمایش تمام آیتم‌های ویژه",
+      "products": [
+        {
+          "id": "prod-elite-boot",
+          "name": "کفش کربنی Elite",
+          "category": "کفش",
+          "price": "۹٬۶۰۰٬۰۰۰ ریال",
+          "badge": "پرفروش",
+          "image": "/images/content/football.jpg"
+        },
+        {
+          "id": "prod-match-kit",
+          "name": "ست مسابقه Aero",
+          "category": "لباس تیمی",
+          "price": "۵٬۴۵۰٬۰۰۰ ریال",
+          "badge": "کیت",
+          "image": "/images/content/iran.jpg"
+        },
+        {
+          "id": "prod-hydration",
+          "name": "بسته هیدراتاسیون",
+          "category": "ریکاوری",
+          "price": "۲٬۱۰۰٬۰۰۰ ریال",
+          "badge": "تغذیه",
+          "image": "/images/content/saloon.jpg"
+        },
+        {
+          "id": "prod-court",
+          "name": "پک کنترل زمین داخل سالن",
+          "category": "ایندور",
+          "price": "۱٬۸۵۰٬۰۰۰ ریال",
+          "badge": "جدید",
+          "image": "/images/content/saloon.jpg"
+        }
+      ]
+    },
+    "equipmentRail": {
+      "title": "لابراتوار عملکرد",
+      "subtitle": "باندل‌های داده‌محور که برای آکادمی‌های استانی آماده شده‌اند.",
+      "cta": "مشاهده ابزار پایش",
+      "products": [
+        {
+          "id": "equip-sensor",
+          "name": "پاد سنسور حرکتی",
+          "category": "آنالیتیکس",
+          "price": "۱۱٬۹۰۰٬۰۰۰ ریال",
+          "badge": "تلماتری",
+          "image": "/images/content/football.jpg"
+        },
+        {
+          "id": "equip-rack",
+          "name": "رک قدرت کم‌جا",
+          "category": "بدنسازی",
+          "price": "۱۸٬۰۰۰٬۰۰۰ ریال",
+          "badge": "عرض جدید",
+          "image": "/images/content/saloon.jpg"
+        },
+        {
+          "id": "equip-ice",
+          "name": "وان یخ موبایل",
+          "category": "ریکاوری",
+          "price": "۷٬۷۵۰٬۰۰۰ ریال",
+          "badge": "کلینیک",
+          "image": "/images/content/kooh.jpg"
+        }
+      ]
+    },
+    "collections": {
+      "title": "کالکشن‌های فصلی",
+      "subtitle": " تجربه ویترین با روایت فارسی و استایل باشگاهی.",
+      "items": [
+        {
+          "title": "کپسول تهران نایت",
+          "description": "پالت مونوکروم با نوارهای رفلکتیو برای باشگاه‌های شهری.",
+          "highlights": [
+            "تولید محدود",
+            "چاپ بازتابی UV",
+            "سایزبندی فراگیر"
+          ]
+        },
+        {
+          "title": "پک سفر خلیج فارس",
+          "description": "پولوهای ضدتعریق، شلوار tailored و کیف‌های دافل.",
+          "highlights": [
+            "بدون چروک",
+            "قابل گلدوزی",
+            "مجاز ورود به کابین"
+          ]
+        },
+        {
+          "title": "لایه پایه کوهستان",
+          "description": "الیاف مرینو برای صعودهای البرز تنظیم شده‌اند.",
+          "highlights": [
+            "کنترل بو",
+            "دوخت فلت‌لاک",
+            "گارانتی ۳ ساله"
+          ]
+        }
+      ]
+    },
+    "bundles": {
+      "title": "برنامه‌های باندلی",
+      "subtitle": "پکیج‌های قیمت‌گذاری‌شده برای تسریع تأییدیه واحد تدارکات.",
+      "items": [
+        {
+          "id": "bundle-academy",
+          "name": "استارتر آکادمی",
+          "description": "۳۰ ست بازیکن، ۶۰ توپ، نردبان چابکی و اقلام فیزیوتراپی.",
+          "savings": "۱۲٪ تخفیف",
+          "price": "۸۹٬۰۰۰٬۰۰۰ ریال"
+        },
+        {
+          "id": "bundle-pro",
+          "name": "کلینیک حرفه‌ای",
+          "description": "بوت ریکاوری، وان سرما، ژل سونوگرافی و چرخ تجهیزات پزشکی.",
+          "savings": "۱۸٪ تخفیف",
+          "price": "۱۳۲٬۰۰۰٬۰۰۰ ریال"
+        },
+        {
+          "id": "bundle-digital",
+          "name": "داده و عملکرد",
+          "description": "جلیقه GPS، میکرو سنسور و لایسنس داشبورد ابری.",
+          "savings": "۹٪ تخفیف",
+          "price": "۱۵۵٬۰۰۰٬۰۰۰ ریال"
+        }
+      ]
+    },
+    "services": {
+      "title": "تضمین‌های عملیاتی",
+      "items": [
+        {
+          "title": "تلماتری موجودی",
+          "description": "فید لحظه‌ای انبار به‌همراه پایش تاریخ انقضا مخصوص مکمل‌ها."
+        },
+        {
+          "title": "میز الزامات",
+          "description": "مسیر اختصاصی برای گمرک، سازمان غذا و دارو و مکاتبات فدراسیونی."
+        },
+        {
+          "title": "راهنماهای خدمات پس از فروش",
+          "description": "ویدیوهای آموزشی برای کیت‌من‌ها و تیم مراقبت از ورزشکار."
+        }
+      ]
+    },
+    "brands": {
+      "title": "برندهای حاضر در قفسه",
+      "items": [
+        "Adidas",
+        "Li-Ning",
+        "Merooj",
+        "Arena",
+        "Molten",
+        "Select",
+        "Under Armour",
+        "Uhlsport"
+      ]
+    },
+    "editorials": {
+      "title": "پلی‌بوک و خبرنامه",
+      "subtitle": "محتوای مرچندایزینگ برای همراه کردن ذینفعان.",
+      "cards": [
+        {
+          "kicker": "آپدیت عملیات",
+          "title": "چطور تأمین ۴۸ ساعته را اجرا می‌کنیم",
+          "description": "مروری بر استراتژی چندهاب لجستیک."
+        },
+        {
+          "kicker": "راهنمای خرید",
+          "title": "استراتژی سایزبندی برای آکادمی‌های دختر و پسر",
+          "description": "چک‌لیست قابل چاپ برای تأیید سفارش."
+        }
+      ]
+    },
+    "ctaBanner": {
+      "title": "نیاز به استور اختصاصی دارید؟",
+      "subtitle": "تجربه را در دامنه فدراسیون شما پیاده می‌کنیم و خروجی ERP-ready تحویل می‌دهیم.",
+      "primaryCta": "رزرو ورکشاپ مرچندایزینگ",
+      "secondaryCta": "ارسال نیازمندی‌ها"
+    },
+    "actions": {
+      "addToList": "افزودن به لیست خرید",
+      "viewDetails": "جزئیات بیشتر"
+    }
   }
 }

@@ -18,7 +18,7 @@ export default function Testimonials({ dictionary }: TestimonialsProps): JSX.Ele
                     <blockquote key={testimonial.name} className="card space-y-4 p-6">
                         <p className="text-base leading-relaxed text-slate-600">“{testimonial.quote}”</p>
                         <footer className="text-sm font-semibold text-slate-900">
-                            {testimonial.name}
+                            {testimonial.name}{' '}
                             <span className="ml-2 text-xs font-medium uppercase tracking-wide text-primary/70">
                 {testimonial.role}
               </span>

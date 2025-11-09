@@ -18,6 +18,8 @@ const navLinks = ['collections', 'gear', 'apparel', 'nutrition', 'about'] as con
 export default function Header({ locale, dictionary }: HeaderProps): JSX.Element {
     const t = dictionary.navigation;
     const languageLabels = dictionary.languageSwitcher;
+    const authCopy = dictionary.auth;
+    const backendCopy = dictionary.backend;
 
     const switcher = (
         <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
@@ -51,11 +53,11 @@ export default function Header({ locale, dictionary }: HeaderProps): JSX.Element
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:px-8 lg:px-12">
                 <Link href={`/${locale}`} className="flex items-center gap-3">
           <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary text-lg font-semibold text-white shadow-lg">
-            SS
+            Pitok
           </span>
                     <div className="leading-tight">
-                        <span className="block text-lg font-bold text-primary-dark">SportShop</span>
-                        <span className="block text-xs text-slate-500">Elite Sports Marketplace</span>
+                        {/* <span className="block text-lg font-bold text-primary-dark">Pitok</span> */}
+                        {/* <span className="block text-xs text-slate-500">Elite Sports Marketplace</span> */}
                     </div>
                 </Link>
                 <nav className="hidden items-center gap-6 text-sm font-semibold text-slate-600 lg:flex">
@@ -64,7 +66,30 @@ export default function Header({ locale, dictionary }: HeaderProps): JSX.Element
                             {t[linkKey]}
                         </Link>
                     ))}
+                    <Link href={`/${locale}/products`} className="transition-colors hover:text-primary-dark">
+                        {t.catalog}
+                    </Link>
+                    <Link
+                        href={`/${locale}/backend`}
+                        className="rounded-full border border-primary/40 px-4 py-1.5 text-primary transition hover:bg-primary/10"
+                    >
+                        {backendCopy.nav.cta}
+                    </Link>
                 </nav>
+                <div className="hidden items-center gap-3 lg:flex">
+                    <Link
+                        href={`/${locale}/auth/login`}
+                        className="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition hover:text-primary-dark"
+                    >
+                        {authCopy.links.login}
+                    </Link>
+                    <Link
+                        href={`/${locale}/auth/register`}
+                        className="rounded-full bg-primary px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5"
+                    >
+                        {authCopy.links.register}
+                    </Link>
+                </div>
                 <div className="hidden lg:block">{switcher}</div>
                 <div className="lg:hidden">
                     <Menu as="div" className="relative inline-block text-left">
@@ -83,7 +108,7 @@ export default function Header({ locale, dictionary }: HeaderProps): JSX.Element
                             <Menu.Items className="absolute right-0 mt-2 w-64 origin-top-right divide-y divide-slate-100 overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                                 <div className="px-4 py-4">
                                     <div className="mb-4 border-b border-dashed border-slate-200 pb-3 text-xs font-semibold uppercase tracking-wide text-slate-400">
-                                        SportShop
+                                        پیتوک
                                     </div>
                                     <div className="space-y-3">
                                         {navLinks.map((linkKey) => (
@@ -100,6 +125,67 @@ export default function Header({ locale, dictionary }: HeaderProps): JSX.Element
                                                 )}
                                             </Menu.Item>
                                         ))}
+                                        <Menu.Item>
+                                            {({ active }) => (
+                                                <Link
+                                                    href={`/${locale}/products`}
+                                                    className={clsx('block rounded-xl px-3 py-2 text-sm font-medium', {
+                                                        'bg-primary/10 text-primary-dark': active
+                                                    })}
+                                                >
+                                                    {t.catalog}
+                                                </Link>
+                                            )}
+                                        </Menu.Item>
+                                    </div>
+                                    <div className="mt-6 grid gap-3">
+                                        <Menu.Item>
+                                            {({ active }) => (
+                                                <Link
+                                                    href={`/${locale}/auth/login`}
+                                                    className={clsx(
+                                                        'block rounded-xl border border-slate-200 px-3 py-2 text-center text-sm font-semibold',
+                                                        {
+                                                            'bg-slate-50 text-primary-dark': active,
+                                                            'text-slate-600': !active
+                                                        }
+                                                    )}
+                                                >
+                                                    {authCopy.links.login}
+                                                </Link>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({ active }) => (
+                                                <Link
+                                                    href={`/${locale}/auth/register`}
+                                                    className={clsx(
+                                                        'block rounded-xl px-3 py-2 text-center text-sm font-semibold text-white shadow',
+                                                        {
+                                                            'bg-primary-dark': active,
+                                                            'bg-primary': !active
+                                                        }
+                                                    )}
+                                                >
+                                                    {authCopy.links.register}
+                                                </Link>
+                                            )}
+                                        </Menu.Item>
+                                    </div>
+                                    <div className="mt-6">
+                                        <Menu.Item>
+                                            {({ active }) => (
+                                                <Link
+                                                    href={`/${locale}/backend`}
+                                                    className={clsx(
+                                                        'block rounded-xl border border-primary/30 px-3 py-2 text-center text-sm font-semibold',
+                                                        active ? 'bg-primary/10 text-primary-dark' : 'text-primary'
+                                                    )}
+                                                >
+                                                    {backendCopy.nav.cta}
+                                                </Link>
+                                            )}
+                                        </Menu.Item>
                                     </div>
                                 </div>
                                 <div className="px-4 py-3">{switcher}</div>

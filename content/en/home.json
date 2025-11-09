@@ -5,19 +5,29 @@
     "gear": "Equipment",
     "apparel": "Apparel",
     "nutrition": "Sports Nutrition",
-    "about": "About"
+    "about": "About",
+    "catalog": "All Products"
   },
   "hero": {
     "title": "Everything for Iranian Champions",
-    "subtitle": "From football pitches to weight rooms, SportShop powers the ambitions of Iranian athletes with trusted global brands.",
+    "subtitle": "From football pitches to weight rooms, Pitok powers the ambitions of Iranian athletes with trusted global brands.",
     "image": "/images/content/iran.jpg",
     "ctaPrimary": "Browse Products",
     "ctaSecondary": "Partner with Coaches"
   },
   "statistics": [
-    { "label": "Active Clubs", "value": "+1,200" },
-    { "label": "Trusted Brands", "value": "+80" },
-    { "label": "Customer Happiness", "value": "98%" }
+    {
+      "label": "Active Clubs",
+      "value": "+1,200"
+    },
+    {
+      "label": "Trusted Brands",
+      "value": "+80"
+    },
+    {
+      "label": "Customer Happiness",
+      "value": "98%"
+    }
   ],
   "categories": {
     "title": "Featured Collections",
@@ -89,12 +99,12 @@
   },
   "testimonials": {
     "title": "Voices of Champions",
-    "subtitle": "Leading clubs and coaches share their SportShop experience.",
+    "subtitle": "Leading clubs and coaches share their پیتوک experience.",
     "items": [
       {
         "name": "Persepolis FC",
         "role": "Procurement Lead",
-        "quote": "SportShop delivers the consistency and quality we require for domestic and continental competitions."
+        "quote": "Pitok delivers the consistency and quality we require for domestic and continental competitions."
       },
       {
         "name": "Mitra Karimi",
@@ -104,7 +114,7 @@
     ]
   },
   "footer": {
-    "tagline": "SportShop, your strategic sports partner",
+    "tagline": "Pitok, your strategic sports partner",
     "description": "A holistic marketplace for gear, apparel, and expert support connecting directly with Iranian federations and clubs.",
     "links": {
       "support": "24/7 Support",
@@ -113,13 +123,674 @@
       "terms": "Terms"
     }
   },
+  "auth": {
+    "links": {
+      "login": "Login",
+      "register": "Register"
+    },
+    "shared": {
+      "mobileLabel": "Mobile number",
+      "mobilePlaceholder": "+98 912 000 0000",
+      "otpLabel": "OTP code",
+      "otpPlaceholder": "6-digit code",
+      "passwordLabel": "Account password",
+      "passwordPlaceholder": "Enter the password you chose during signup",
+      "nameLabel": "Full name",
+      "emailLabel": "Work email",
+      "success": "Done!",
+      "error": "Something went wrong. Please try again.",
+      "activationHint": "Activation OTPs are logged by boofback for development. Copy the code to activate your profile."
+    },
+    "login": {
+      "title": "Sign in with your mobile",
+      "subtitle": "Your mobile number is your username and every session is unlocked with a one-time passcode.",
+      "requestOtp": "Send OTP",
+      "verifyOtp": "Verify & enter dashboard",
+      "otpHelper": "The Go backend just generated a new OTP. Treat it as your password for this login.",
+      "passwordHelper": "First step verifies your stored password before we issue the OTP challenge.",
+      "otpStepTitle": "Enter the OTP challenge",
+      "successMessage": "Signed in successfully. Your browser now holds the boofback session cookie.",
+      "switchToRegister": "Need an account?"
+    },
+    "register": {
+      "title": "Create your پیتوک ID",
+      "subtitle": "Use your real mobile number—it becomes your username and receives activation OTPs.",
+      "submit": "Create account",
+      "successTitle": "Account created",
+      "successBody": "Check the API logs for your activation OTP, confirm via /api/v1/auth/activate, then continue to login.",
+      "switchToLogin": "Already have an account?"
+    }
+  },
+  "backend": {
+    "hero": {
+      "kicker": "boofback API",
+      "title": "Explore the Go service without leaving the UI",
+      "subtitle": "Use the embedded playground to ping health checks, seed products, and walk through OTP-secured flows exactly how Gin handlers expect them.",
+      "metrics": [
+        {
+          "label": "Latency",
+          "value": "< 60ms"
+        },
+        {
+          "label": "OTP window",
+          "value": "5 min"
+        },
+        {
+          "label": "Session TTL",
+          "value": "7 days"
+        }
+      ]
+    },
+    "nav": {
+      "overview": "Overview",
+      "status": "Status",
+      "products": "Products",
+      "users": "Users",
+      "auth": "Auth",
+      "addresses": "Addresses",
+      "orders": "Orders",
+      "cta": "API console"
+    },
+    "playground": {
+      "requestTitle": "Request body",
+      "responseTitle": "Latest response",
+      "send": "Send request",
+      "sending": "Sending…",
+      "requiresAuth": "Requires a valid boofback session cookie.",
+      "invalidJson": "Invalid JSON. Please fix the payload and try again.",
+      "emptyResponse": "Waiting for a request."
+    },
+    "overview": {
+      "layersEyebrow": "Architecture",
+      "layersTitle": "Layered Go service",
+      "layersSubtitle": "Each slice owns a single responsibility so swapping repositories or transports never touches business rules.",
+      "layers": [
+        {
+          "layer": "Domain",
+          "title": "Entities & validation",
+          "description": "Protects invariants for Product, User, Address, OTP, and Order before persistence ever runs.",
+          "location": "internal/domain"
+        },
+        {
+          "layer": "Repository",
+          "title": "Storage adapters",
+          "description": "Thread-safe in-memory stores today, database adapters tomorrow—both implement the same contracts.",
+          "location": "internal/repository"
+        },
+        {
+          "layer": "Service",
+          "title": "Use cases",
+          "description": "Business orchestration for onboarding, OTP login, address/default rules, stock reservation, and totals.",
+          "location": "internal/service"
+        },
+        {
+          "layer": "Transport",
+          "title": "Gin handlers & router",
+          "description": "HTTP binding, middleware, and normalized responses for /api/v1 plus /health liveness checks.",
+          "location": "internal/handler + internal/router"
+        }
+      ],
+      "workflowEyebrow": "Feature journey",
+      "workflowTitle": "How shoppers move through boofback",
+      "workflowSubtitle": "Map every POST/GET to the human story behind it.",
+      "workflowSteps": [
+        {
+          "title": "Signup",
+          "description": "POST /api/v1/users seeds a customer, hashes the password, and emits an activation OTP to stdout."
+        },
+        {
+          "title": "Activation",
+          "description": "POST /api/v1/auth/activate toggles is_active once the mobile + OTP pair is validated."
+        },
+        {
+          "title": "Two-step login",
+          "description": "POST /api/v1/auth/login validates the stored password, then /verify issues a signed session cookie after OTP verification."
+        },
+        {
+          "title": "Transact",
+          "description": "Authenticated shoppers list products, attach saved addresses, and submit orders with one JSON payload."
+        }
+      ],
+      "apiEyebrow": "Surface area",
+      "apiTitle": "High-impact endpoints",
+      "apiSubtitle": "These routes are pre-configured in the playground so you can test them instantly.",
+      "apiTable": {
+        "method": "Method",
+        "path": "Path",
+        "description": "Description",
+        "access": "Access"
+      },
+      "apiEndpoints": [
+        {
+          "method": "GET",
+          "path": "/health",
+          "description": "Liveness probe for load balancers and humans alike.",
+          "scope": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/users",
+          "description": "Create a shopper with hashed password + inactive flag.",
+          "scope": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/activate",
+          "description": "Validate OTP to unlock login.",
+          "scope": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login",
+          "description": "Begin OTP login (password check).",
+          "scope": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/auth/login/verify",
+          "description": "Finalize login and set the session.",
+          "scope": "public"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/products",
+          "description": "List in-stock items with current inventory.",
+          "scope": "public"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/orders",
+          "description": "Create an order with saved or ad-hoc shipping data.",
+          "scope": "authenticated"
+        },
+        {
+          "method": "GET",
+          "path": "/api/v1/addresses",
+          "description": "Saved address book for the session owner.",
+          "scope": "authenticated"
+        },
+        {
+          "method": "POST",
+          "path": "/api/v1/products",
+          "description": "Admin-only product creation.",
+          "scope": "admin"
+        }
+      ]
+    },
+    "status": {
+      "eyebrow": "Operations",
+      "title": "Runtime health",
+      "subtitle": "boofback exposes a zero-dependency /health route so the frontend can confirm connectivity before calling private endpoints.",
+      "cards": {
+        "status": "Status",
+        "uptime": "Uptime",
+        "region": "Region",
+        "unknown": "unknown",
+        "na": "n/a"
+      },
+      "unreachable": "The API could not be reached. Verify NEXT_PUBLIC_API_BASE_URL, make sure `make run` is active, and that CORS allows the frontend origin.",
+      "diagnosticsTitle": "Manual diagnostics",
+      "diagnosticsSubtitle": "Need to double-check TLS, proxies, or VPN routing? Send a real request below.",
+      "playground": {
+        "title": "Ping /health",
+        "description": "Returns 200 OK when the Gin server is alive."
+      }
+    },
+    "products": {
+      "eyebrow": "Catalog",
+      "title": "Product inventory",
+      "subtitle": "Data is fetched live from /api/v1/products so you can see exactly what the backend would expose to web or mobile clients.",
+      "columns": {
+        "name": "Name",
+        "description": "Description",
+        "price": "Price",
+        "stock": "Stock"
+      },
+      "empty": "No products yet. Use the playground to seed one or POST directly with curl.",
+      "playgroundTitle": "Product APIs",
+      "playgroundSubtitle": "Authenticated admins manage stock via these routes.",
+      "createTitle": "Create product",
+      "createDescription": "Requires the admin session cookie. Stocks items immediately for demo orders.",
+      "detailTitle": "Fetch by id",
+      "detailDescription": "Replace :id with a UUID returned from the creation response.",
+      "samples": {
+        "create": {
+          "name": "National team jersey",
+          "description": "Limited run kit for the AFC campaign.",
+          "price": 199.99,
+          "stock": 25
+        }
+      }
+    },
+    "users": {
+      "eyebrow": "Onboarding",
+      "title": "Customer lifecycle",
+      "subtitle": "Match every screen in the auth UI with the real endpoints backing it.",
+      "steps": [
+        {
+          "title": "Register",
+          "description": "POST /api/v1/users with name, email, mobile, and password."
+        },
+        {
+          "title": "Activate",
+          "description": "Copy the OTP from backend logs and POST /api/v1/auth/activate."
+        },
+        {
+          "title": "Login",
+          "description": "OTP login requires two POST calls (/login then /verify)."
+        }
+      ],
+      "createTitle": "Create user",
+      "createDescription": "Mirrors the Register form in the UI.",
+      "activateTitle": "Activate account",
+      "activateDescription": "Activates the mobile number once the OTP matches.",
+      "adminTitle": "Admin-only endpoints",
+      "adminDescription": "GET /api/v1/users, fetch other profiles, or delete users require the `admin` role set in the database.",
+      "samples": {
+        "create": {
+          "name": "Ada Lovelace",
+          "email": "ada@example.com",
+          "mobile": "+15555550123",
+          "password": "Str0ngPass!"
+        },
+        "activate": {
+          "mobile": "+15555550123",
+          "code": "123456"
+        }
+      }
+    },
+    "authFlows": {
+      "eyebrow": "Sessions",
+      "title": "OTP-first authentication",
+      "subtitle": "All mutations live behind explicit POST calls so you can trace audit logs easily.",
+      "notes": [
+        "Login is stateless until the verify step sets the signed cookie.",
+        "Session cookies include the user id and role to accelerate authorization.",
+        "Password resets reuse the OTP repository with the `reset` purpose."
+      ],
+      "loginSection": {
+        "title": "Two-step login",
+        "subtitle": "Step one checks the password, step two verifies the OTP.",
+        "initiateTitle": "Initiate login",
+        "initiateDescription": "Sends a fresh OTP. Response status is 202 Accepted.",
+        "verifyTitle": "Verify login",
+        "verifyDescription": "On success the backend sets an HTTP-only cookie."
+      },
+      "sessionSection": {
+        "meTitle": "Who am I?",
+        "meDescription": "GET /api/v1/auth/me returns the authenticated user.",
+        "logoutTitle": "Logout",
+        "logoutDescription": "POST /api/v1/auth/logout invalidates the session cookie."
+      },
+      "resetSection": {
+        "title": "Password reset",
+        "subtitle": "Two calls: request the OTP, then submit the new password.",
+        "forgotTitle": "Request reset OTP",
+        "forgotDescription": "Matches email + mobile and logs an OTP.",
+        "resetTitle": "Set new password",
+        "resetDescription": "Requires the OTP plus matching identifiers."
+      },
+      "samples": {
+        "login": {
+          "mobile": "+15555550123",
+          "password": "Str0ngPass!"
+        },
+        "verify": {
+          "mobile": "+15555550123",
+          "code": "123456"
+        },
+        "forgot": {
+          "email": "ada@example.com",
+          "mobile": "+15555550123"
+        },
+        "reset": {
+          "email": "ada@example.com",
+          "mobile": "+15555550123",
+          "code": "123456",
+          "password": "NewStr0ngPass!"
+        }
+      }
+    },
+    "addresses": {
+      "eyebrow": "Address book",
+      "title": "Reusable shipping profiles",
+      "subtitle": "Address handlers clone the payload into each order so edits never mutate history.",
+      "highlights": [
+        "Authenticated endpoints only—cookies route to the correct owner automatically.",
+        "Default selection is enforced server-side. Only one default at a time."
+      ],
+      "createTitle": "Save address",
+      "createDescription": "POST /api/v1/addresses to create or update the default in one call.",
+      "listTitle": "List addresses",
+      "listDescription": "Returns every saved address for the authenticated user.",
+      "defaultTitle": "Set default",
+      "defaultDescription": "POST /api/v1/addresses/:id/default will unset previous defaults.",
+      "updateTitle": "Update address",
+      "updateDescription": "PUT /api/v1/addresses/:id mutates the saved record.",
+      "samples": {
+        "create": {
+          "label": "Home",
+          "recipient_name": "Ada Lovelace",
+          "line1": "42 Binary Rd",
+          "city": "Tehran",
+          "region": "Tehran",
+          "postal_code": "1234567890",
+          "country": "IR",
+          "phone": "+989120000000",
+          "is_default": true
+        },
+        "update": {
+          "label": "Home HQ",
+          "recipient_name": "Ada Lovelace",
+          "line1": "42 Binary Rd",
+          "city": "Tehran",
+          "region": "Tehran",
+          "postal_code": "1234567890",
+          "country": "IR",
+          "phone": "+989120000000",
+          "is_default": false
+        }
+      }
+    },
+    "orders": {
+      "eyebrow": "Transactions",
+      "title": "Order orchestration",
+      "subtitle": "Requests clone the selected address, lock inventory, and calculate totals atomically.",
+      "requirements": [
+        "Authenticated session (customer orders their own id, admins can impersonate).",
+        "At least one valid product id + quantity.",
+        "Either `address_id` that belongs to the user or an inline shipping payload."
+      ],
+      "createTitle": "Create order",
+      "createDescription": "Include the user id plus either address_id or inline `shipping_address`.",
+      "listTitle": "List orders",
+      "listDescription": "Admins see everyone. Customers see their own.",
+      "detailTitle": "Fetch order",
+      "detailDescription": "GET /api/v1/orders/:id returns items, totals, and the cloned address.",
+      "adminTitle": "List orders for user",
+      "adminDescription": "Admins can query orders per user id.",
+      "samples": {
+        "create": {
+          "user_id": "user-id-here",
+          "address_id": "address-id-here",
+          "items": [
+            {
+              "product_id": "product-id-here",
+              "quantity": 1
+            }
+          ]
+        }
+      }
+    }
+  },
   "languageSwitcher": {
-    "label": "Language",
     "fa": "فارسی",
     "en": "English"
   },
   "api": {
     "status": "Service Status",
     "connected": "Stable connection to Go Gin API"
+  },
+  "catalogPage": {
+    "seo": {
+      "title": "پیتوک Catalog | Train, compete, recover",
+      "description": "Browse curated kits, equipment, and bundles with transparent lead times for every Iranian club."
+    },
+    "hero": {
+      "kicker": "Product catalog",
+      "title": "Inventory depth for every Iranian athlete",
+      "subtitle": "From grassroots academies to national teams, configure replenishment windows, custom branding, and same-week delivery.",
+      "primaryCta": "Build procurement list",
+      "secondaryCta": "Request merchandising call",
+      "pill": {
+        "label": "New arrival",
+        "value": "Spring / 1403 drop"
+      },
+      "stats": [
+        {
+          "label": "Ready-to-ship SKUs",
+          "value": "1,850+"
+        },
+        {
+          "label": "Fulfillment hubs",
+          "value": "8 cities"
+        },
+        {
+          "label": "Custom orders",
+          "value": "14-day average"
+        }
+      ],
+      "serviceNotes": [
+        {
+          "title": "Club personalization",
+          "description": "Numbering, sponsor locks, and federation badges handled in-house."
+        },
+        {
+          "title": "Compliance screening",
+          "description": "All supplements clear IFDA rules with lab documentation on file."
+        }
+      ]
+    },
+    "categorySlider": {
+      "title": "Shop by discipline",
+      "subtitle": "Swipe across the most requested departments. Every card links to curated assortments.",
+      "cta": "Download assortment PDF",
+      "items": [
+        {
+          "id": "cat-football",
+          "title": "Football & Futsal",
+          "description": "Match jerseys, recovery boots, and travel sets.",
+          "tag": "Pro match kits",
+          "image": "/images/content/football.jpg"
+        },
+        {
+          "id": "cat-outdoor",
+          "title": "Outdoor & Trek",
+          "description": "Layering systems, crampons, ropes, and shelters.",
+          "tag": "4-season",
+          "image": "/images/content/kooh.jpg"
+        },
+        {
+          "id": "cat-club",
+          "title": "Indoor programs",
+          "description": "CrossFit rigs, weightlifting belts, mats, and plates.",
+          "tag": "Studio ready",
+          "image": "/images/content/saloon.jpg"
+        },
+        {
+          "id": "cat-national",
+          "title": "National team essentials",
+          "description": "Travel apparel, ceremony outfits, and medical kits.",
+          "tag": "Delegation",
+          "image": "/images/content/iran.jpg"
+        }
+      ]
+    },
+    "featuredRail": {
+      "title": "Featured product rail",
+      "subtitle": "Immediate availability, serialized authenticity, and official channel pricing.",
+      "cta": "See all featured items",
+      "products": [
+        {
+          "id": "prod-elite-boot",
+          "name": "Elite Carbon Boots",
+          "category": "Footwear",
+          "price": "IRR 9,600,000",
+          "badge": "Best seller",
+          "image": "/images/content/football.jpg"
+        },
+        {
+          "id": "prod-match-kit",
+          "name": "Matchday Aero Kit",
+          "category": "Teamwear",
+          "price": "IRR 5,450,000",
+          "badge": "Kits",
+          "image": "/images/content/iran.jpg"
+        },
+        {
+          "id": "prod-hydration",
+          "name": "Hydration Stack",
+          "category": "Recovery",
+          "price": "IRR 2,100,000",
+          "badge": "Nutrition",
+          "image": "/images/content/saloon.jpg"
+        },
+        {
+          "id": "prod-court",
+          "name": "Court Grip Pack",
+          "category": "Indoor",
+          "price": "IRR 1,850,000",
+          "badge": "New",
+          "image": "/images/content/saloon.jpg"
+        }
+      ]
+    },
+    "equipmentRail": {
+      "title": "Performance lab",
+      "subtitle": "Data-backed equipment bundles ready for provincial academies.",
+      "cta": "Preview monitoring tools",
+      "products": [
+        {
+          "id": "equip-sensor",
+          "name": "Motion Sensor Pods",
+          "category": "Analytics",
+          "price": "IRR 11,900,000",
+          "badge": "Telemetry",
+          "image": "/images/content/football.jpg"
+        },
+        {
+          "id": "equip-rack",
+          "name": "Compact Strength Rack",
+          "category": "Conditioning",
+          "price": "IRR 18,000,000",
+          "badge": "New width",
+          "image": "/images/content/saloon.jpg"
+        },
+        {
+          "id": "equip-ice",
+          "name": "Mobile Ice Bath",
+          "category": "Recovery",
+          "price": "IRR 7,750,000",
+          "badge": "Clinics",
+          "image": "/images/content/kooh.jpg"
+        }
+      ]
+    },
+    "collections": {
+      "title": "Seasonal collections",
+      "subtitle": "merchandising walls with Farsi-first storytelling.",
+      "items": [
+        {
+          "title": "Tehran Nights Capsule",
+          "description": "Monochrome palettes with reflective trims for urban clubs.",
+          "highlights": [
+            "Limited run",
+            "UV reflective ink",
+            "Inclusive sizing"
+          ]
+        },
+        {
+          "title": "Persian Gulf Travel Pack",
+          "description": "Moisture-wicking polos, tailored trousers, and duffels.",
+          "highlights": [
+            "Wrinkle free",
+            "Easy embroidery",
+            "Cabin-approved"
+          ]
+        },
+        {
+          "title": "Mountain Base Layers",
+          "description": "Merino blends tuned for Alborz expeditions.",
+          "highlights": [
+            "Odor control",
+            "Flatlock seams",
+            "3-year warranty"
+          ]
+        }
+      ]
+    },
+    "bundles": {
+      "title": "Bundled programs",
+      "subtitle": "Pre-costed combos help procurement teams sign off faster.",
+      "items": [
+        {
+          "id": "bundle-academy",
+          "name": "Academy Starter",
+          "description": "30 player kits, 60 balls, agility ladders, and physio basics.",
+          "savings": "Save 12%",
+          "price": "IRR 89,000,000"
+        },
+        {
+          "id": "bundle-pro",
+          "name": "Pro Clinic",
+          "description": "Recovery boots, cryo tubs, ultrasound gels, and medical carts.",
+          "savings": "Save 18%",
+          "price": "IRR 132,000,000"
+        },
+        {
+          "id": "bundle-digital",
+          "name": "Data + Performance",
+          "description": "GPS vests, micro-sensor pods, cloud dashboard license.",
+          "savings": "Save 9%",
+          "price": "IRR 155,000,000"
+        }
+      ]
+    },
+    "services": {
+      "title": "Operational guarantees",
+      "items": [
+        {
+          "title": "Inventory telemetry",
+          "description": "Live stock feed plus expiry tracking for supplements."
+        },
+        {
+          "title": "Compliance desk",
+          "description": "Dedicated channel for customs, IFDA, and federation paperwork."
+        },
+        {
+          "title": "After-sales playbooks",
+          "description": "Video onboarding for kit managers and athlete care staff."
+        }
+      ]
+    },
+    "brands": {
+      "title": "Brands on shelf",
+      "items": [
+        "Adidas",
+        "Li-Ning",
+        "Merooj",
+        "Arena",
+        "Molten",
+        "Select",
+        "Under Armour",
+        "Uhlsport"
+      ]
+    },
+    "editorials": {
+      "title": "Playbooks & newsroom",
+      "subtitle": "Give stakeholders context pulled from our merchandising team.",
+      "cards": [
+        {
+          "kicker": "Ops update",
+          "title": "How we stage 48-hour replenishment",
+          "description": "Deep dive into our multi-hub fulfillment strategy."
+        },
+        {
+          "kicker": "Buyer guide",
+          "title": "Sizing strategy for co-ed academies",
+          "description": "A printable worksheet for order approvals."
+        }
+      ]
+    },
+    "ctaBanner": {
+      "title": "Need a curated storefront?",
+      "subtitle": "We replicate your experience within your federation domain including ERP-ready exports.",
+      "primaryCta": "Book merchandising workshop",
+      "secondaryCta": "Share requirements"
+    },
+    "actions": {
+      "addToList": "Add to requisition",
+      "viewDetails": "View details"
+    }
   }
 }
