@@ -18,10 +18,9 @@ jobs:
     environment:
       name: ${{ vars.DEPLOY_ENVIRONMENT_NAME || vars.DEPLOY_ENV || 'host' }}
     env:
-      SSH_HOST: ${{ secrets.SSH_HOST || vars.SSH_HOST }}
-      SSH_USER: ${{ secrets.SSH_USER || vars.SSH_USER }}
-      SSH_PASSWORD: ${{ secrets.SSH_PASSWORD || vars.SSH_PASSWORD }}
-      CERTBOT_EMAIL: ${{ secrets.CERTBOT_EMAIL || vars.CERTBOT_EMAIL || '' }}
+      SSH_HOST: ${{ secret.IP }}
+      SSH_USER: ${{ secret.USER }}
+      SSH_PASSWORD: ${{ secret.PASS }}
 
     steps:
       - name: Validate connection settings
@@ -98,9 +97,9 @@ jobs:
     environment:
       name: ${{ vars.DEPLOY_ENVIRONMENT_NAME || vars.DEPLOY_ENV || 'host' }}
     env:
-      SSH_HOST: ${{ secrets.SSH_HOST || vars.SSH_HOST }}
-      SSH_USER: ${{ secrets.SSH_USER || vars.SSH_USER }}
-      SSH_PASSWORD: ${{ secrets.SSH_PASSWORD || vars.SSH_PASSWORD }}
+      SSH_HOST: ${{ secret.IP }}
+      SSH_USER: ${{ secret.USER }}
+      SSH_PASSWORD: ${{ secret.PASS }}
 
     steps:
       - name: Checkout repository
