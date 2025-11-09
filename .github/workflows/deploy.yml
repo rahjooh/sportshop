@@ -18,9 +18,9 @@ jobs:
     environment:
       name: ${{ vars.DEPLOY_ENVIRONMENT_NAME || vars.DEPLOY_ENV || 'host' }}
     env:
-      SSH_HOST: ${{ secret.IP }}
-      SSH_USER: ${{ secret.USER }}
-      SSH_PASSWORD: ${{ secret.PASS }}
+      SSH_HOST: ${{ secrets.SSH_HOST || secrets.IP || vars.SSH_HOST || vars.IP }}
+      SSH_USER: ${{ secrets.SSH_USER || secrets.USER || vars.SSH_USER || vars.USERNAME || vars.USER }}
+      SSH_PASSWORD: ${{ secrets.SSH_PASSWORD || secrets.PASS || secrets.PASSWORD || vars.SSH_PASSWORD || vars.PASS || vars.PASSWORD }}
 
     steps:
       - name: Validate connection settings
@@ -97,9 +97,9 @@ jobs:
     environment:
       name: ${{ vars.DEPLOY_ENVIRONMENT_NAME || vars.DEPLOY_ENV || 'host' }}
     env:
-      SSH_HOST: ${{ secret.IP }}
-      SSH_USER: ${{ secret.USER }}
-      SSH_PASSWORD: ${{ secret.PASS }}
+      SSH_HOST: ${{ secrets.SSH_HOST || secrets.IP || vars.SSH_HOST || vars.IP }}
+      SSH_USER: ${{ secrets.SSH_USER || secrets.USER || vars.SSH_USER || vars.USERNAME || vars.USER }}
+      SSH_PASSWORD: ${{ secrets.SSH_PASSWORD || secrets.PASS || secrets.PASSWORD || vars.SSH_PASSWORD || vars.PASS || vars.PASSWORD }}
 
     steps:
       - name: Checkout repository
