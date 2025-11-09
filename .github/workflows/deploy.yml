@@ -48,6 +48,7 @@ jobs:
           username: ${{ env.SSH_USER }}
           password: ${{ env.SSH_PASSWORD }}
           port: 22
+          envs: SPORT_DOMAIN,SPORT_APP_PORT,SPORT_APP_NAME
           script: |
             set -euo pipefail
             DOMAIN="${SPORT_DOMAIN}"
