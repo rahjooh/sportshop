@@ -96,7 +96,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: ssh-test
     environment:
-      name: ${{ env.DEPLOY_ENVIRONMENT_NAME }}
+      name: ${{ vars.DEPLOY_ENVIRONMENT_NAME || vars.DEPLOY_ENV || 'host' }}
     env:
       SSH_HOST: ${{ secrets.SSH_HOST || vars.SSH_HOST }}
       SSH_USER: ${{ secrets.SSH_USER || vars.SSH_USER }}
