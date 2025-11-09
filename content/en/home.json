@@ -524,6 +524,7 @@
     }
   },
   "languageSwitcher": {
+    "label": "Language",
     "fa": "فارسی",
     "en": "English"
   },
