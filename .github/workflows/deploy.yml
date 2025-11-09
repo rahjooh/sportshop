@@ -142,30 +142,60 @@ jobs:
           port: 22
           script: |
             set -euo pipefail
-            DOMAIN="${SPORT_DOMAIN}"
-            APP_DIR="$HOME/apps/${DOMAIN}"
-            APP_NAME="${SPORT_APP_NAME}"
-            APP_PORT="${SPORT_APP_PORT}"
-            ARCHIVE_PATH="$HOME/deployments/deploy.tar.gz"
 
-            if command -v sudo >/dev/null 2>&1; then SUDO="sudo"; else SUDO=""; fi
+            ARCHIVE_DIR="$HOME/deployments"
+            ARCHIVE_NAME="deploy.tar.gz"
+            ARCHIVE_PATH="$ARCHIVE_DIR/$ARCHIVE_NAME"
+            APP_DIR="$HOME/apps/boofshop.com"
+            APP_NAME="boofshop-com"
 
-            # Ensure Node + PM2
-            if ! command -v node >/dev/null 2>&1; then
-              $SUDO apt-get update
-              curl -fsSL https://deb.nodesource.com/setup_20.x | $SUDO bash -
-              $SUDO apt-get install -y nodejs
+            mkdir -p "$ARCHIVE_DIR"
+
+            if command -v sudo >/dev/null 2>&1; then
+              SUDO="sudo"
+            else
+              SUDO=""
             fi
+
+            export DEBIAN_FRONTEND=noninteractive
+            export APT_LISTCHANGES_FRONTEND=none
+
+            UPDATED=0
+            apt_update_once() {
+              if [ "$UPDATED" -eq 0 ]; then
+                $SUDO apt-get update -o Dpkg::Use-Pty=0
+                UPDATED=1
+              fi
+            }
+
+            apt_install() {
+              apt_update_once
+              $SUDO apt-get install -y -o Dpkg::Use-Pty=0 "$@"
+            }
+
+            if ! command -v curl >/dev/null 2>&1; then
+              apt_install curl
+            fi
+
+            if ! command -v node >/dev/null 2>&1; then
+              apt_install ca-certificates gnupg
+              curl -fsSL https://deb.nodesource.com/setup_20.x | $SUDO bash -
+              apt_install nodejs
+            fi
+
+            if ! command -v setcap >/dev/null 2>&1; then
+              apt_install libcap2-bin
+            fi
+
             if ! command -v pm2 >/dev/null 2>&1; then
               $SUDO npm install -g pm2
             fi
 
-            # Stop old app if exists
-            if pm2 describe "$APP_NAME" >/dev/null 2>&1; then
-              pm2 stop "$APP_NAME" && pm2 delete "$APP_NAME"
+            if command -v pm2 >/dev/null 2>&1 && pm2 describe "$APP_NAME" >/dev/null 2>&1; then
+              pm2 stop "$APP_NAME"
+              pm2 delete "$APP_NAME"
             fi
 
-            # Unpack & build
             rm -rf "$APP_DIR"
             mkdir -p "$APP_DIR"
             tar -xzf "$ARCHIVE_PATH" -C "$APP_DIR" --strip-components=1
@@ -175,7 +205,25 @@ jobs:
             npm install
             npm run build
 
-            # Start with PM2
+            if [ -n "$SUDO" ]; then
+              NODE_BIN="$(command -v node || true)"
+              if [ -n "$NODE_BIN" ]; then
+                $SUDO setcap 'cap_net_bind_service=+ep' "$NODE_BIN" || true
+              fi
+            fi
+
+            APP_PORT=3002
+
             pm2 start npm --name "$APP_NAME" -- run start -- --hostname 0.0.0.0 --port "$APP_PORT"
+            if [ -n "$SUDO" ]; then
+              $SUDO pm2 startup systemd -u "$(whoami)" --hp "$HOME" || true
+            fi
             pm2 save
-            $SUDO systemctl reload nginx || $SUDO systemctl restart nginx || true
+            
+            if command -v nginx >/dev/null 2>&1; then
+              if command -v systemctl >/dev/null 2>&1; then
+                $SUDO systemctl reload nginx || $SUDO systemctl restart nginx || true
+              else
+                $SUDO nginx -s reload || $SUDO service nginx reload || true
+              fi
+            fi
