@@ -1,6 +1,6 @@
 'use client';
 
-import { Children, isValidElement, type ReactElement, type ReactNode, useId, useRef } from 'react';
+import { Children, isValidElement, type ReactNode, useId, useRef } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import { logClientEvent } from '../../lib/logger';

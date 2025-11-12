@@ -20,7 +20,7 @@ export default function Header({ locale, dictionary }: HeaderProps): JSX.Element
     const languageLabels = dictionary.languageSwitcher;
     const authCopy = dictionary.auth;
     const backendCopy = dictionary.backend;
-    const isRTL = locale === 'fa';
+    // const isRTL = locale === 'fa';
 
     const switcher = (
         <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
