@@ -5,7 +5,7 @@ export const metadata: Metadata = {
     title: 'پیتوک | فروشگاه ورزشی آنلاین',
     description:
         'Pirok is a bilingual sports marketplace tailored for Iranian athletes. Discover premium gear, apparel, and accessories backed by a Go Gin API.',
-    metadataBase: new URL('https://example.com')
+    metadataBase: new URL('https://sport.boofshop.com\'')
 };
 
 export default function RootLayout({
