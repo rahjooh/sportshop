@@ -1,4 +1,4 @@
-# پیتوک Frontend
+# Pitok Frontend
 
 A bilingual (Persian-first) sport marketplace UI inspired by Shopify, built with Next.js 13 App Router. The UI showcases premium imagery, responsive layouts, and localized messaging tailored for the Iranian market. It is designed to work with an existing Go Gin backend.
 

@@ -105,7 +105,12 @@ export default function Header({ locale, dictionary }: HeaderProps): JSX.Element
                             leaveFrom="transform opacity-100 scale-100"
                             leaveTo="transform opacity-0 scale-95"
                         >
-                            <Menu.Items className="absolute right-0 mt-2 w-64 origin-top-right divide-y divide-slate-100 overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                            <Menu.Items
+                                className={clsx(
+                                    'absolute mt-2 w-64 divide-y divide-slate-100 overflow-hidden rounded-2xl bg-white shadow-lg ring-1 ring-black/5 focus:outline-none',
+                                    locale === 'fa' ? 'left-0 origin-top-left' : 'right-0 origin-top-right'
+                                )}
+                            >
                                 <div className="px-4 py-4">
                                     <div className="mb-4 border-b border-dashed border-slate-200 pb-3 text-xs font-semibold uppercase tracking-wide text-slate-400">
                                         پیتوک

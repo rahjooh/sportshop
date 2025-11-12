@@ -4,7 +4,7 @@ import './globals.css';
 export const metadata: Metadata = {
     title: 'پیتوک | فروشگاه ورزشی آنلاین',
     description:
-        'پیتوک is a bilingual sports marketplace tailored for Iranian athletes. Discover premium gear, apparel, and accessories backed by a Go Gin API.',
+        'Pirok is a bilingual sports marketplace tailored for Iranian athletes. Discover premium gear, apparel, and accessories backed by a Go Gin API.',
     metadataBase: new URL('https://example.com')
 };
 
