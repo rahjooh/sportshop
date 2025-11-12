@@ -9,7 +9,7 @@ env:
   DEPLOY_ENVIRONMENT_NAME: ${{ vars.DEPLOY_ENVIRONMENT_NAME || vars.DEPLOY_ENV || 'host' }}
   SPORT_DOMAIN: ${{ vars.SPORT_DOMAIN || 'sport.boofshop.com' }}
   SPORT_APP_NAME: ${{ vars.SPORT_APP_NAME || 'sportshop' }}
-  SPORT_APP_PORT: ${{ vars.SPORT_APP_PORT || '30021' }}
+  SPORT_APP_PORT: ${{ vars.SPORT_APP_PORT || '3004' }}
 
 jobs:
   ssh-test:
